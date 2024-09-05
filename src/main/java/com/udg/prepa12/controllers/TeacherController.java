@@ -1,5 +1,6 @@
 package com.udg.prepa12.controllers;
 
+import com.udg.prepa12.persistence.models.TeacherEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,4 +13,8 @@ public class TeacherController {
         return "teacher router";
     }
 
+    @PostMapping
+    public TeacherEntity createTeacher(@RequestBody TeacherEntity teacher){
+        return teacher;
+    }
 }
