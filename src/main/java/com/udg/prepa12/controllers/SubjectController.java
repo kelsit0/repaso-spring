@@ -1,7 +1,6 @@
 package com.udg.prepa12.controllers;
 
-import com.udg.prepa12.persistence.models.SubjectEntity;
-import org.springframework.stereotype.Controller;
+import com.udg.prepa12.persistence.entities.SubjectEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

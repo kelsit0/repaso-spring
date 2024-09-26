@@ -1,5 +1,5 @@
 package com.udg.prepa12.controllers;
-import com.udg.prepa12.persistence.models.UserEntity;
+import com.udg.prepa12.persistence.entities.UserEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

@@ -1,4 +1,4 @@
-package com.udg.prepa12.persistence.models;
+package com.udg.prepa12.persistence.entities;
 
 
 import lombok.AllArgsConstructor;
@@ -12,7 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SubjectEntity {
-
     private String name;
     private String description;
     private List<UserEntity> students= new ArrayList<>();

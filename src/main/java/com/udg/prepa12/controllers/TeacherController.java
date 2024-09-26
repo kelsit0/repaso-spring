@@ -1,6 +1,6 @@
 package com.udg.prepa12.controllers;
 
-import com.udg.prepa12.persistence.models.TeacherEntity;
+import com.udg.prepa12.persistence.entities.TeacherEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

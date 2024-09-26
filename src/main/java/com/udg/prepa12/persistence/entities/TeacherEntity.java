@@ -1,5 +1,4 @@
-package com.udg.prepa12.persistence.models;
-
+package com.udg.prepa12.persistence.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,9 +7,9 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class UserEntity {
+@AllArgsConstructor
+public class TeacherEntity {
     private String name;
     private String password;
     private String email;
