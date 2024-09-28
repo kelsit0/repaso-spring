@@ -1,10 +1,13 @@
-#Imagen modelo
-FROM eclipse-temurin:17-jdk-jammy
+# the base image
+FROM amazoncorretto:17
 
+# the JAR file path
+ARG JAR_FILE=target/*.jar
 
-ARG JAR_FILE=target/prepa12-0.0.1-SNAPSHOT.jar
-COPY ${JAR_FILE} prepa12.jar
-#INFORMAR EL PUERTO EN DONDE SE EJECUTE EL CONTENEDOR(INFORMATIVO)
-EXPOSE 8080
-# LEVANTAR NUESTRA APLICACION CUANDO EL CONTENEDOR INICIE
-ENTRYPOINT ["java", "-jar", "prepa12.jar"]
+# Copy the JAR file from the build context into the Docker image
+COPY ${JAR_FILE} application.jar
+
+CMD apt-get update -y
+
+# Set the default command to run the Java application
+ENTRYPOINT ["java", "-Xmx2048M", "-jar", "/application.jar"]

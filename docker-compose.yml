@@ -1,27 +1,27 @@
 services:
-  prepa12-app:
-    build: .   # Ruta al Dockerfile o carpeta de proyecto
-    platform: linux/amd64  # Forzar a construir para arquitectura amd64
-    ports:
-      - "8080:8080"
-    environment:
-      DB_URL: jdbc:postgresql://todo_db:5432/mydatabase?currentSchema=public
-      DB_USER_NAME: postgres
-      DB_PASSWORD: 1234
-    restart: always
+  app:
+    image: 'docker-spring-boot-postgres:latest'
+    build:
+      context: .
+    container_name: app
     depends_on:
-      prepa12_db:
-        condition: service_healthy
-  prepa12_db:
-    image: postgres:14.5  # Cambia la imagen de MySQL a PostgreSQL
-    ports:
-      - "5432:5432"  # Puerto predeterminado de PostgreSQL
+      - db
     environment:
-      POSTGRES_USER: kell  # Usuario predeterminado de PostgreSQL
-      POSTGRES_PASSWORD: 1234  # Contraseña de la base de datos
-      POSTGRES_DB: mydatabase  # Nombre de la base de datos
-    restart: always
-    healthcheck:
-      test: ["CMD", "pg_isready", "-U", "postgres"]  # Comando de healthcheck para PostgreSQL
-      timeout: 10s
-      retries: 10
+      - POSTGRES_USER=$YOUR_USERNAME
+      - POSTGRES_PASSWORD=$YOUR_PASSWORD
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/$YOUR_DB_NAME
+      - SPRING_DATASOURCE_USERNAME=$YOUR_USERNAME
+      - SPRING_DATASOURCE_PASSWORD=$YOUR_PASSWORD
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - "$LOCAL_PORT_APP:$DOCKER_PORT_APP" # El puerto de la aplicación mapea a 8080 o similar
+
+  db:
+    image: postgres
+    container_name: db
+    environment:
+      - POSTGRES_USER=$YOUR_USERNAME
+      - POSTGRES_PASSWORD=$YOUR_PASSWORD
+      - POSTGRES_DB=$YOUR_DB_NAME
+    ports:
+      - "$LOCAL_PORT_DB:$DOCKER_PORT_DB" # El puerto de la base de datos mapea a 5433
